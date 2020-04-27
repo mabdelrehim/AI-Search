@@ -3,8 +3,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
-
 public class AStar extends AbstractSearch implements Search {
 
     HashSet<String> explored;
@@ -60,24 +58,25 @@ public class AStar extends AbstractSearch implements Search {
 
     public boolean search(Puzzle initialState) {
         ArrayList<Puzzle> neighbors = getNeighbors(initialState);
-        HashSet<Puzzle> explored = new HashSet<>();
         printState(initialState);
         for(Puzzle neighbor : neighbors) {
             heap.add(neighbor);
         }
+        explored.add(initialState.toString());
 
+    
         while(!heap.isEmpty()) {
             Puzzle current = heap.remove();
-            explored.add(current);
+            explored.add(current.toString());
             printState(current);
             if(current.testState()) {
                 return true;
             }
             for(Puzzle neighbor : getNeighbors(current)) {
-                if(!explored.contains(neighbor)) {
+                if(!explored.contains(neighbor.toString())) {
                     heap.add(neighbor);
                 } else if(heap.contains(neighbor)) {
-                    heap.remove(neighbor);
+                    System.out.println(heap.remove(neighbor));
                 }
             }
 
