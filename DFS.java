@@ -11,7 +11,7 @@ public class DFS extends AbstractSearch implements Search{
  
     }
  
-    public void search(Puzzle initialState){
+    public boolean search(Puzzle initialState){
  
         frontier.push(initialState);
  
@@ -33,7 +33,7 @@ public class DFS extends AbstractSearch implements Search{
  
             if(currentState.testState()){
                 System.out.println("---------------Goal---------------");
-                return;
+                return true;
             }
  
             neighbors = getNeighbors(currentState);
@@ -52,6 +52,7 @@ public class DFS extends AbstractSearch implements Search{
             }
  
         }
+        return false;
     }
  
 }
