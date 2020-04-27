@@ -1,18 +1,13 @@
-import java.util.ArrayList;
-
 public class Puzzle {
-    
+ 
     int [][] state;
-    ArrayList<Puzzle> neighbors;
     int row;
     int col;
-
+ 
     Puzzle(int[][] init) {
         this.state = init;
-        this.neighbors = new ArrayList<>();
-        this.row = 0;
-        this.col = 0;
-
+ 
+ 
         // get the position of zero
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -22,9 +17,9 @@ public class Puzzle {
                 }
             }
         }
-        
+ 
     }
-
+ 
     boolean testState(){
         int count = 0;
         boolean retVal = true;
@@ -33,10 +28,11 @@ public class Puzzle {
                 if(this.state[i][j] != count) {
                     retVal = false;
                 }
+                count++;
             }
         }
         return retVal;
     }
-
-
+ 
+ 
 }
