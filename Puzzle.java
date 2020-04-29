@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Puzzle {
  
     int [][] state;
@@ -19,6 +21,27 @@ public class Puzzle {
         }
  
     }
+    Puzzle(Integer[] init) {
+        this.state = new int[3][3];
+        int k = 0;
+        // get the position of zero
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                this.state[i][j] = init[k];
+            }
+        }
+ 
+        // get the position of zero
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(this.state[i][j] == 0) {
+                    this.row = i;
+                    this.col = j;
+                }
+            }
+        }
+ 
+    }
  
     boolean testState(){
         int count = 0;
@@ -32,6 +55,18 @@ public class Puzzle {
             }
         }
         return retVal;
+    }
+
+    public Integer[] getState1D() {
+        ArrayList<Integer> retVal = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j ++) {
+                retVal.add(this.state[i][j]);
+            }
+        }
+
+        Integer[] array = retVal.toArray(new Integer[0]);
+        return array;
     }
 
     @Override

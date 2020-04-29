@@ -3,13 +3,17 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-public class AStar extends AbstractSearch implements Search {
+public class AStar extends AbstractSearch implements Search, Runnable {
 
     HashSet<String> explored;
     PriorityQueue<Puzzle> heap;
+    VisualizerFrame frame;
+    Puzzle initial;
 
-    public AStar(String heuristic) {
+    public AStar(String heuristic, Puzzle initial, VisualizerFrame frame) {
         this.explored = new HashSet<>();
+        this.initial = initial;
+        this.frame = frame;
 
         // default is euclidean
         if(heuristic.contains("manhattan")) {
@@ -63,10 +67,12 @@ public class AStar extends AbstractSearch implements Search {
             heap.add(neighbor);
         }
         explored.add(initialState.toString());
+        frame.reDrawArray(initialState.getState1D(), initialState.row*3 + initialState.col);
 
     
         while(!heap.isEmpty()) {
             Puzzle current = heap.remove();
+            frame.reDrawArray(current.getState1D(), current.row*3 + current.col);
             explored.add(current.toString());
             printState(current);
             if(current.testState()) {
@@ -78,6 +84,12 @@ public class AStar extends AbstractSearch implements Search {
                 } else if(heap.contains(neighbor)) {
                     System.out.println(heap.remove(neighbor));
                 }
+            }
+
+            try {
+                Thread.sleep(SearchVisualizer.sleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
         }
@@ -92,6 +104,11 @@ public class AStar extends AbstractSearch implements Search {
             }
         }
         System.out.println();
+    }
+
+    public void run() {
+        search(this.initial);
+        SearchVisualizer.isSearching = false;
     }
 
 }

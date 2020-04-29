@@ -1,6 +1,6 @@
 import java.util.*;
  
-public class DFS extends AbstractSearch implements Search{
+public class DFS extends AbstractSearch implements Search, Runnable{
  
     Deque<Puzzle> frontier = new ArrayDeque<Puzzle>();
     HashSet<String> explored = new HashSet<>();
@@ -53,6 +53,10 @@ public class DFS extends AbstractSearch implements Search{
  
         }
         return false;
+    }
+
+    public void run() {
+        
     }
  
 }
