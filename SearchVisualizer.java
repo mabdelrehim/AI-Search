@@ -52,10 +52,10 @@ public class SearchVisualizer {
 				break;
 
             case "BFS":
-                searchingThread = new Thread(new DFS(toBeSearched, frame));
+                searchingThread = new Thread(new BFS(toBeSearched, frame));
                 break;
             case "DFS":
-                searchingThread = new Thread(new BFS(toBeSearched, frame));
+                searchingThread = new Thread(new DFS(toBeSearched, frame));
 				break;
 				
 			default:

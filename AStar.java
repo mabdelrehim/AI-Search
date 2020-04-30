@@ -89,8 +89,8 @@ public class AStar extends AbstractSearch implements Search, Runnable {
             printState(current);
             if (current.testState()) {
                 System.out.println("---------------Goal---------------");
-                System.out.println("BFS max depth = " + Integer.toString(max));
-                System.out.println("BFS cost of path = " + Integer.toString(current.depth_at));
+                System.out.println("A* max depth = " + Integer.toString(max));
+                System.out.println("A* cost of path = " + Integer.toString(current.depth_at));
                 return true;
             }
             /*try {

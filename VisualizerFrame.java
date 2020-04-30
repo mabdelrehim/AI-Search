@@ -116,6 +116,7 @@ public class VisualizerFrame extends JFrame {
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(800, 800);
 		setLocationRelativeTo(null);
     }
 	

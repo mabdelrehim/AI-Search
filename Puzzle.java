@@ -9,6 +9,7 @@ public class Puzzle {
  
     Puzzle(int[][] init, int depth_at) {
         this.state = init;
+        this.depth_at = depth_at;
  
  
         // get the position of zero
