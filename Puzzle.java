@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+
 public class Puzzle {
  
     int [][] state;
     int row;
     int col;
+    int depth_at;
  
-    Puzzle(int[][] init) {
+    Puzzle(int[][] init, int depth_at) {
         this.state = init;
  
  
@@ -43,6 +46,19 @@ public class Puzzle {
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * @return the state 1D array
+     */
+    public ArrayList<Integer> getState1D() {
+        ArrayList<Integer> retVal = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                retVal.add(this.state[i][j]);
+            }
+        }
+        return retVal;
     }
  
  
